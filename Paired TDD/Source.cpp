@@ -21,6 +21,19 @@ void displayBoard(char board[][BOARD_SIZE]) {
 	}
 }
 
-void AIMove() {
+void AIMove(char board[][BOARD_SIZE]) {
+	bool validPlay = false;
 
+	do
+	{
+		int xPos = rand() % 3 + 1;
+		int yPos = rand() % 3 + 1;
+
+		if(getBoardStateAt(board, xPos, yPos) == '#')
+		{
+			setBoardStateAt(board, xPos, yPos, AI);
+			validPlay = true;
+		}
+
+	} while (!validPlay);
 }

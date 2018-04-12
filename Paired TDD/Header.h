@@ -1,15 +1,18 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include <stdlib.h>   
+#include <time.h>      
 using namespace std;
 
 const int BOARD_SIZE = 5;
+const int PLAY_SIZE = 3;
 const char AI = 'X';
 const char PLAYER = 'O';
 
 void initBoard(char board[][BOARD_SIZE]);
 void displayBoard(char board[][BOARD_SIZE]);
-void AIMove();
+void AIMove(char board[][BOARD_SIZE]);
 
 //Helper functions
 inline char getBoardStateAt(char board[][BOARD_SIZE], int xIndex, int yIndex)

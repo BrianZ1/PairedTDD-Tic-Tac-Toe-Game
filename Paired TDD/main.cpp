@@ -4,6 +4,8 @@ int main() {
 	char board[BOARD_SIZE][BOARD_SIZE];
 	string winner = "a";
 	bool end;
+
+	srand(time(NULL));
 	initBoard(board);
 
 	//Game loop
@@ -11,7 +13,8 @@ int main() {
 
 		setBoardStateAt(board, 1, 1, PLAYER);
 		setBoardStateAt(board, 1, 2, AI);
-
+		
+		AIMove(board);
 		displayBoard(board);
 
 		winner = winstateCheck(board, end);

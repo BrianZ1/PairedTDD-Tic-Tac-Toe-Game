@@ -26,8 +26,15 @@ inline void setBoardStateAt(char board[][BOARD_SIZE], int xIndex, int yIndex, ch
 }
 
 //Brian Features
-void playerMove();
-void switchAdjacentPieces();
+inline bool playerMove(char board[][BOARD_SIZE], int xIndex, int yIndex)
+{
+	setBoardStateAt(board, xIndex, yIndex, PLAYER);
+	return true;
+}
+inline bool switchAdjacentPieces(char board[][BOARD_SIZE])
+{
+	return true;
+}
 
 //Justin Features
 inline string winstateCheck(char board[][BOARD_SIZE], bool& end)

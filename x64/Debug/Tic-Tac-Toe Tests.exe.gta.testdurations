@@ -1,8 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <GtaTestDurations xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <Executable>C:\Users\brian\Desktop\Paired TDD\x64\Debug\Tic-Tac-Toe Tests.exe</Executable>
+  <Executable>C:\Users\brian\Desktop\Paired_TDD\x64\Debug\Tic-Tac-Toe Tests.exe</Executable>
   <TestDurations>
     <TestDuration Test="TestCaseName.TestName" Duration="1" />
     <TestDuration Test="test.test" Duration="1" />
+    <TestDuration Test="WinstateCheckTest.verticalWinTest" Duration="1" />
+    <TestDuration Test="WinstateCheckTest.playerWinTest" Duration="1" />
+    <TestDuration Test="WinstateCheckTest.aiWinTest" Duration="1" />
+    <TestDuration Test="WinstateCheckTest.horizontalPlayerWinTest" Duration="1" />
+    <TestDuration Test="WinstateCheckTest.horizontalAiWinTest" Duration="1" />
+    <TestDuration Test="WinstateCheckTest.diagonalWinTest" Duration="1" />
+    <TestDuration Test="WinstateCheckTest.noWinTest" Duration="1" />
+    <TestDuration Test="WinstateCheckTest.offGridWinTest" Duration="1" />
+    <TestDuration Test="PlaceOffGridTest.almostWinConditionTest" Duration="1" />
+    <TestDuration Test="PlaceOnBorderTest.placeOnBorderTest" Duration="1" />
+    <TestDuration Test="PlaceOffGridTest.twoDifferentAdjacentPieceTest" Duration="1" />
   </TestDurations>
 </GtaTestDurations>

@@ -235,3 +235,45 @@ TEST(SwitchPiecesTest, switchFailBlockTest)
 	EXPECT_FALSE(switchAdjacentPieces(board));
 	EXPECT_EQ(getBoardStateAt(board, 1, 3), AI);
 }
+
+TEST(CheckGroupsTest, checkRightTest)
+{
+	char board[BOARD_SIZE][BOARD_SIZE];
+
+	initBoard(board);
+	setBoardStateAt(board, 1, 1, PLAYER);
+	setBoardStateAt(board, 2, 1, PLAYER);
+	setBoardStateAt(board, 3, 1, '#');
+
+	EXPECT_TRUE(checkRight(board, 1, 1, PLAYER, 2));
+}
+
+TEST(CheckGroupsTest, checkUpTest)
+{
+	char board[BOARD_SIZE][BOARD_SIZE];
+
+	initBoard(board);
+	setBoardStateAt(board, 1, 1, PLAYER);
+	setBoardStateAt(board, 1, 2, PLAYER);
+	setBoardStateAt(board, 1, 3, '#');
+
+	EXPECT_TRUE(checkUp(board, 1, 1, PLAYER, 2));
+}
+
+TEST(CheckGroupsTest, checkDiagonalTest)
+{
+	char board[BOARD_SIZE][BOARD_SIZE];
+
+	initBoard(board);
+	setBoardStateAt(board, 1, 1, PLAYER);
+	setBoardStateAt(board, 2, 2, PLAYER);
+	setBoardStateAt(board, 3, 3, '#');
+
+	EXPECT_TRUE(checkDiagonal(board, 1, 1, PLAYER, 2));
+}
+
+int main(int argc, char **argv)
+{
+	::testing::InitGoogleTest(&argc, argv);
+	return RUN_ALL_TESTS();
+}

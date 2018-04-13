@@ -34,6 +34,166 @@ inline void setBoardStateAt(char board[][BOARD_SIZE], int xIndex, int yIndex, ch
 	board[xIndex][yIndex] = type;
 }
 
+inline bool checkRight(char board[][BOARD_SIZE], int x, int y, char piece, int numPieces)
+{
+	int pieceCount = 0;
+	for (int i = 0; i <= 3; i++)
+	{
+		if (getBoardStateAt(board, x + i, y) == piece)
+			pieceCount++;
+	}
+
+	if (pieceCount >= numPieces)
+		return true;
+	return false;
+}
+
+inline bool checkUp(char board[][BOARD_SIZE], int x, int y, char piece, int numPieces)
+{
+	int pieceCount = 0;
+	for (int i = 0; i <= 3; i++)
+	{
+		if (getBoardStateAt(board, x, y + i) == piece)
+			pieceCount++;
+	}
+
+	if (pieceCount >= numPieces)
+		return true;
+	return false;
+}
+
+inline bool checkDiagonal(char board[][BOARD_SIZE], int x, int y, char piece, int numPieces)
+{
+	int pieceCount = 0;
+	for (int i = 0; i <= 3; i++)
+	{
+		if (getBoardStateAt(board, x + i, y + i) == piece)
+			pieceCount++;
+	}
+
+	if (pieceCount >= numPieces)
+		return true;
+	return false;
+}
+
+inline void getPlayerPatternCoords(char board[][BOARD_SIZE], int coords[][2], int numPieces)
+{
+	for (int i = 0; i < BOARD_SIZE; i++)
+	{
+		for (int j = 0; j < BOARD_SIZE; j++)
+		{
+			char piece = '*';
+			if ((i < BOARD_SIZE - 1 && i > 0) && (j < BOARD_SIZE - 1 && j > 0))
+				piece = getBoardStateAt(board, i, j);
+
+			if (piece == PLAYER || piece == '#')
+			{
+				if (i == 1)
+				{
+					if (checkRight(board, i, j, PLAYER, numPieces))
+					{
+						coords[0][0] = i;
+						coords[0][1] = j;
+						coords[1][0] = i + 1;
+						coords[1][1] = j;
+						coords[2][0] = i + 2;
+						coords[2][1] = j;
+						return;
+					}
+				}
+
+				if (j == 1)
+				{
+					if (checkUp(board, i, j, PLAYER, numPieces))
+					{
+						coords[0][0] = i;
+						coords[0][1] = j;
+						coords[1][0] = i;
+						coords[1][1] = j + 1;
+						coords[2][0] = i;
+						coords[2][1] = j + 2;
+						return;
+					}
+				}
+
+				if (j == 1 && i == 1)
+				{
+					if (checkDiagonal(board, i, j, PLAYER, numPieces))
+					{
+						coords[0][0] = i;
+						coords[0][1] = j;
+						coords[1][0] = i + 1;
+						coords[1][1] = j + 1;
+						coords[2][0] = i + 2;
+						coords[2][1] = j + 2;
+						return;
+					}
+				}
+			}
+		}
+	}
+}
+
+inline void getAIPatternCoords(char board[][BOARD_SIZE], int coords[][2], int numPieces)
+{
+	for (int i = 0; i < BOARD_SIZE; i++)
+	{
+		for (int j = 0; j < BOARD_SIZE; j++)
+		{
+			char piece = '*';
+			if (i < BOARD_SIZE - 1 && j < BOARD_SIZE - 1)
+				piece = getBoardStateAt(board, i, j);
+
+			if (piece == AI || piece == '#')
+			{
+				if (j > 2)
+				{
+					if (checkRight(board, i, j, AI, numPieces))
+					{
+						coords[0][0] = i;
+						coords[0][1] = j;
+						coords[1][0] = i + 1;
+						coords[1][1] = j;
+						coords[2][0] = i + 2;
+						coords[2][1] = j;
+						return;
+					}
+				}
+
+				if (i > 2)
+				{
+					if (checkUp(board, i, j, AI, numPieces))
+					{
+						coords[0][0] = i;
+						coords[0][1] = j;
+						coords[1][0] = i;
+						coords[1][1] = j + 1;
+						coords[2][0] = i;
+						coords[2][1] = j + 2;
+						return;
+					}
+				}
+
+				if (j <=2 && i <= 2)
+				{
+					if (checkDiagonal(board, i, j, AI, numPieces))
+					{
+						coords[0][0] = i;
+						coords[0][1] = j;
+						coords[1][0] = i + 1;
+						coords[1][1] = j + 1;
+						coords[2][0] = i + 2;
+						coords[2][1] = j + 2;
+						return;
+					}
+				}
+			}
+		}
+	}
+}
+
+
+
 int getXPos(char board[][BOARD_SIZE]);
 int getYPos(char board[][BOARD_SIZE]);
 
@@ -198,7 +358,22 @@ inline bool switchAdjacentPieces(char board[][BOARD_SIZE])
 //Justin Features
 inline string winstateCheck(char board[][BOARD_SIZE], bool& end)
 {
-	end = true;
+	int coords[3][2] = { {-1,-1}, {-1,-1}, {-1,-1}};
+	getAIPatternCoords(board, coords, 3);
+	if (coords[0][0] != -1)
+	{
+		end = true;
+		return "AI";
+	}
+
+	getPlayerPatternCoords(board, coords, 3);
+	if (coords[0][0] != -1)
+	{
+		end = true;
+		return "Player";
+	}
+
+	end = false;
 	return " ";
 }
 

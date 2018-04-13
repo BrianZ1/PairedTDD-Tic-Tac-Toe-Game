@@ -190,6 +190,7 @@ inline bool switchAdjacentPieces(char board[][BOARD_SIZE])
 	topRightCornerCheck(board);
 	bottomLeftCornerCheck(board);
 	bottomRightCornerCheck(board);
+	middleCheck(board);
 
 	return false;
 }

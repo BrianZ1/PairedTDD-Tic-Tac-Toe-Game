@@ -58,9 +58,46 @@ inline bool playerMove(char board[][BOARD_SIZE], int yIndex, int xIndex)
 	return false;
 }
 
+static int moves[8][2] = { { -1,0 },{ -1, -1 },{ 0, -1 },{ 1, -1 },{ 1, 0 },{ 1, 1 },{ 0, 1 },{ -1, 1 } };
+
 inline bool switchAdjacentPieces(char board[][BOARD_SIZE])
 {
-	return true;
+	int xFirstPlayerIndex;
+	int yFirstPlayerIndex;
+	int xSecondPlayerIndex;
+	int ySecondPlayerIndex;
+
+	for(int i = 1; i < 4; i++)
+	{
+		for(int j = 1; j < 4; j++)
+		{
+			if (getBoardStateAt(board, i, j) == PLAYER)
+			{
+				for (int l = 0; l < 8; l++)
+				{
+					if(getBoardStateAt(board, i + moves[l][0], j + moves[l][1]) == PLAYER)
+					{
+						xFirstPlayerIndex = i;
+						yFirstPlayerIndex = j;
+						xSecondPlayerIndex = i + moves[l][0];
+						ySecondPlayerIndex = j + moves[l][1];
+						break;
+					}
+				}
+				
+				for(int l = 0; l < 8; l++)
+				{
+					if(getBoardStateAt(board, i + moves[l][0], j + moves[l][1]) == AI)
+					{
+						swap(board[i][j], board[i + moves[l][0]][j + moves[l][1]]);
+						return true;
+					}
+				}
+			}
+		}
+	}
+
+	return false;
 }
 
 //Justin Features

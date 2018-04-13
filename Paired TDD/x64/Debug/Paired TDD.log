@@ -3,5 +3,6 @@
   Compiling...
   main.cpp
 c:\users\brian\desktop\paired_tdd\paired tdd\main.cpp(8): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\brian\desktop\paired_tdd\paired tdd\main.cpp(6): warning C4101: 'end': unreferenced local variable
   Generating Code...
   Paired TDD.vcxproj -> C:\Users\brian\Desktop\Paired_TDD\x64\Debug\Paired TDD.exe

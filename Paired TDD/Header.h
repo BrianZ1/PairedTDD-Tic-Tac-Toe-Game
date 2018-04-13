@@ -141,12 +141,12 @@ inline void getAIPatternCoords(char board[][BOARD_SIZE], int coords[][2], int nu
 		for (int j = 0; j < BOARD_SIZE; j++)
 		{
 			char piece = '*';
-			if (i < BOARD_SIZE - 1 && j < BOARD_SIZE - 1)
+			if (i < BOARD_SIZE - 1 || j < BOARD_SIZE - 1)
 				piece = getBoardStateAt(board, i, j);
 
 			if (piece == AI || piece == '#')
 			{
-				if (j > 2)
+				if (i < BOARD_SIZE - 1)
 				{
 					if (checkRight(board, i, j, AI, numPieces))
 					{
@@ -160,7 +160,7 @@ inline void getAIPatternCoords(char board[][BOARD_SIZE], int coords[][2], int nu
 					}
 				}
 
-				if (i > 2)
+				if (j < BOARD_SIZE - 1)
 				{
 					if (checkUp(board, i, j, AI, numPieces))
 					{
@@ -379,5 +379,20 @@ inline string winstateCheck(char board[][BOARD_SIZE], bool& end)
 
 inline bool placeOnBorder(char board[][BOARD_SIZE])
 {
+	int coords[3][2] = { { -1,-1 },{ -1,-1 },{ -1,-1 } };
+	getAIPatternCoords(board, coords, 2);
+
+	if (coords[0][0] == 1 || coords[0][1] == 1 || coords[2][0] == BOARD_SIZE - 1 || coords[2][1] == BOARD_SIZE - 1)
+	{
+		for (int i = 0; i < 3; i++)
+		{
+			if (getBoardStateAt(board, coords[i][0], coords[i][1]) == '#')
+			{
+				setBoardStateAt(board, coords[i][0], coords[i][1], AI);
+				return true;
+			}
+		}
+	}
+
 	return false;
 }

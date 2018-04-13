@@ -1,5 +1,7 @@
-﻿  main.cpp
-c:\users\justin\documents\files\repos\pairedtdd-tic-tac-toe-game\paired tdd\main.cpp(8): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-  Source.cpp
+﻿  Source.cpp
   Generating Code...
-  Paired TDD.vcxproj -> C:\Users\Justin\Documents\Files\Repos\PairedTDD-Tic-Tac-Toe-Game\x64\Debug\Paired TDD.exe
+  Compiling...
+  main.cpp
+c:\users\brian\desktop\paired_tdd\paired tdd\main.cpp(8): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  Generating Code...
+  Paired TDD.vcxproj -> C:\Users\brian\Desktop\Paired_TDD\x64\Debug\Paired TDD.exe

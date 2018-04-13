@@ -13,6 +13,7 @@ TEST(WinstateCheckTest, horizontalPlayerWinTest)
 	char board[BOARD_SIZE][BOARD_SIZE];
 	bool end = true;
 
+	initBoard(board);
 	setBoardStateAt(board, 1, 1, PLAYER);
 	setBoardStateAt(board, 1, 2, PLAYER);
 	setBoardStateAt(board, 1, 3, PLAYER);
@@ -28,6 +29,7 @@ TEST(WinstateCheckTest, horizontalAiWinTest)
 	char board[BOARD_SIZE][BOARD_SIZE];
 	bool end = true;
 
+	initBoard(board);
 	setBoardStateAt(board, 1, 1, AI);
 	setBoardStateAt(board, 1, 2, AI);
 	setBoardStateAt(board, 1, 3, AI);
@@ -43,6 +45,7 @@ TEST(WinstateCheckTest, verticalWinTest)
 	char board[BOARD_SIZE][BOARD_SIZE];
 	bool end;
 
+	initBoard(board);
 	setBoardStateAt(board, 1, 1, AI);
 	setBoardStateAt(board, 2, 1, AI);
 	setBoardStateAt(board, 3, 1, AI);
@@ -58,6 +61,7 @@ TEST(WinstateCheckTest, diagonalWinTest)
 	char board[BOARD_SIZE][BOARD_SIZE];
 	bool end;
 
+	initBoard(board);
 	setBoardStateAt(board, 1, 1, AI);
 	setBoardStateAt(board, 2, 2, AI);
 	setBoardStateAt(board, 3, 3, AI);
@@ -84,6 +88,8 @@ TEST(WinstateCheckTest, offGridWinTest)
 	char board[BOARD_SIZE][BOARD_SIZE];
 	bool end;
 
+	initBoard(board);
+
 	setBoardStateAt(board, 0, 0, AI);
 	setBoardStateAt(board, 1, 1, AI);
 	setBoardStateAt(board, 2, 2, AI);
@@ -99,6 +105,8 @@ TEST(PlaceOffGridTest, almostWinConditionTest)
 {
 	char board[BOARD_SIZE][BOARD_SIZE];
 
+	initBoard(board);
+
 	setBoardStateAt(board, 1, 1, PLAYER);
 	setBoardStateAt(board, 1, 2, PLAYER);
 	setBoardStateAt(board, 2, 1, PLAYER);
@@ -111,6 +119,8 @@ TEST(PlaceOffGridTest, twoDifferentAdjacentPieceTest)
 {
 	char board[BOARD_SIZE][BOARD_SIZE];
 
+	initBoard(board);
+
 	setBoardStateAt(board, 1, 1, PLAYER);
 	setBoardStateAt(board, 1, 2, AI);
 	setBoardStateAt(board, 2, 1, AI);
@@ -122,6 +132,8 @@ TEST(PlaceOffGridTest, twoDifferentAdjacentPieceTest)
 TEST(PlaceOnBorderTest, placeOnBorderTest)
 {
 	char board[BOARD_SIZE][BOARD_SIZE];
+
+	initBoard(board);
 
 	setBoardStateAt(board, 1, 1, PLAYER);
 	setBoardStateAt(board, 1, 2, PLAYER);

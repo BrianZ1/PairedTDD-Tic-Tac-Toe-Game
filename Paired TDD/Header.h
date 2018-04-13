@@ -10,7 +10,16 @@ const int PLAY_SIZE = 3;
 const char AI = 'X';
 const char PLAYER = 'O';
 
-void initBoard(char board[][BOARD_SIZE]);
+inline void initBoard(char board[][BOARD_SIZE]) {
+	for (int i = 0; i < BOARD_SIZE; i++)
+	{
+		for (int j = 0; j < BOARD_SIZE; j++)
+		{
+			board[i][j] = '#';
+		}
+	}
+}
+
 void displayBoard(char board[][BOARD_SIZE]);
 void AIMove(char board[][BOARD_SIZE]);
 
@@ -25,12 +34,30 @@ inline void setBoardStateAt(char board[][BOARD_SIZE], int xIndex, int yIndex, ch
 	board[xIndex][yIndex] = type;
 }
 
+int getXPos(char board[][BOARD_SIZE]);
+int getYPos(char board[][BOARD_SIZE]);
+
 //Brian Features
-inline bool playerMove(char board[][BOARD_SIZE], int xIndex, int yIndex)
+inline bool playerMove(char board[][BOARD_SIZE], int yIndex, int xIndex)
 {
-	setBoardStateAt(board, xIndex, yIndex, PLAYER);
-	return true;
+	if(getBoardStateAt(board, xIndex, yIndex) == '#')
+	{
+		if(xIndex > 0 && xIndex < BOARD_SIZE && yIndex > 0 && yIndex < BOARD_SIZE )
+		{
+			setBoardStateAt(board, xIndex, yIndex, PLAYER);
+			return true;
+		}
+			cout << "Input out of bounds\n";
+	}
+	else
+	{
+		cout << "There is already a peice there\n";
+	}
+
+	cout << "Enter different values.\n";
+	return false;
 }
+
 inline bool switchAdjacentPieces(char board[][BOARD_SIZE])
 {
 	return true;

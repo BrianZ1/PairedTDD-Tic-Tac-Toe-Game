@@ -1,18 +1,10 @@
 #include "Header.h"
 
-void initBoard(char board[][BOARD_SIZE]) {
-	for (int i = 0; i < BOARD_SIZE; i++)
-	{
-		for (int j = 0; j < BOARD_SIZE; j++)
-		{
-			board[i][j] = '#';
-		}
-	}
-}
-
 void displayBoard(char board[][BOARD_SIZE]) {
+	cout << "  0 1 2 3 4" << endl;
 	for (int i = 0; i < BOARD_SIZE; i++)
 	{
+		cout << i << " ";
 		for (int j = 0; j < BOARD_SIZE; j++)
 		{
 			cout << board[i][j] << " ";
@@ -36,4 +28,20 @@ void AIMove(char board[][BOARD_SIZE]) {
 		}
 
 	} while (!validPlay);
+}
+
+int getXPos(char board[][BOARD_SIZE])
+{
+	int x;
+	cout << "Enter X coord" << endl;
+	cin >> x;
+	return x;
+}
+
+int getYPos(char board[][BOARD_SIZE])
+{
+	int y;
+	cout << "Enter Y coord" << endl;
+	cin >> y;
+	return y;
 }

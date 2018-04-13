@@ -15,5 +15,12 @@
     <TestDuration Test="PlaceOffGridTest.almostWinConditionTest" Duration="1" />
     <TestDuration Test="PlaceOnBorderTest.placeOnBorderTest" Duration="1" />
     <TestDuration Test="PlaceOffGridTest.twoDifferentAdjacentPieceTest" Duration="1" />
+    <TestDuration Test="PlayerMoveTest.placeValidTest" Duration="1" />
+    <TestDuration Test="PlayerMoveTest.placeOnPlayerTest" Duration="1" />
+    <TestDuration Test="PlayerMoveTest.placeOnAITest" Duration="1" />
+    <TestDuration Test="PlayerMoveTest.placeOffGridTest" Duration="1" />
+    <TestDuration Test="SwitchPiecesTest.switchOnFirstPieceTest" Duration="1" />
+    <TestDuration Test="SwitchPiecesTest.switchOnSecondPieceTest" Duration="1" />
+    <TestDuration Test="SwitchPiecesTest.switchFailBlockTest" Duration="1" />
   </TestDurations>
 </GtaTestDurations>

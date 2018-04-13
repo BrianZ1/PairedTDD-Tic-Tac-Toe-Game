@@ -9,12 +9,14 @@ int main() {
 	initBoard(board);
 
 	//Game loop
-	do {
-
-		setBoardStateAt(board, 1, 1, PLAYER);
-		setBoardStateAt(board, 1, 2, AI);
-		
+	do {		
 		AIMove(board);
+
+		do
+		{
+			displayBoard(board);
+		} while (!playerMove(board, getXPos(board), getYPos(board)));
+
 		displayBoard(board);
 
 		winner = winstateCheck(board, end);

@@ -38,6 +38,82 @@ int getXPos(char board[][BOARD_SIZE]);
 int getYPos(char board[][BOARD_SIZE]);
 
 //Brian Features
+inline void topLeftCornerCheck(char board[][BOARD_SIZE])
+{
+	if (getBoardStateAt(board, 1, 1) == PLAYER)
+	{
+		if (getBoardStateAt(board, 2, 1) == PLAYER)
+		{
+			setBoardStateAt(board, 3, 1, AI);
+		}
+		else if (getBoardStateAt(board, 1, 2) == PLAYER)
+		{
+			setBoardStateAt(board, 1, 3, AI);
+		}
+		else if (getBoardStateAt(board, 2, 2) == PLAYER)
+		{
+			setBoardStateAt(board, 3, 3, AI);
+		}
+	}
+}
+
+inline void topRightCornerCheck(char board[][BOARD_SIZE])
+{
+	if (getBoardStateAt(board, 1, 3) == PLAYER)
+	{
+		if (getBoardStateAt(board, 1, 2) == PLAYER)
+		{
+			setBoardStateAt(board, 1, 1, AI);
+		}
+		else if (getBoardStateAt(board, 2, 2) == PLAYER)
+		{
+			setBoardStateAt(board, 3, 1, AI);
+		}
+		else if (getBoardStateAt(board, 2, 3) == PLAYER)
+		{
+			setBoardStateAt(board, 3, 3, AI);
+		}
+	}
+}
+
+inline void bottomLeftCornerCheck(char board[][BOARD_SIZE])
+{
+	if (getBoardStateAt(board, 3, 1) == PLAYER)
+	{
+		if (getBoardStateAt(board, 2, 1) == PLAYER)
+		{
+			setBoardStateAt(board, 1, 1, AI);
+		}
+		else if (getBoardStateAt(board, 2, 2) == PLAYER)
+		{
+			setBoardStateAt(board, 1, 3, AI);
+		}
+		else if (getBoardStateAt(board, 3, 2) == PLAYER)
+		{
+			setBoardStateAt(board, 3, 3, AI);
+		}
+	}
+}
+
+inline void bottomRightCornerCheck(char board[][BOARD_SIZE])
+{
+	if (getBoardStateAt(board, 3, 3) == PLAYER)
+	{
+		if (getBoardStateAt(board, 2, 3) == PLAYER)
+		{
+			setBoardStateAt(board, 1, 3, AI);
+		}
+		else if (getBoardStateAt(board, 3, 2) == PLAYER)
+		{
+			setBoardStateAt(board, 3, 1, AI);
+		}
+		else if (getBoardStateAt(board, 2, 2) == PLAYER)
+		{
+			setBoardStateAt(board, 1, 1, AI);
+		}
+	}
+}
+
 inline bool playerMove(char board[][BOARD_SIZE], int yIndex, int xIndex)
 {
 	if(getBoardStateAt(board, xIndex, yIndex) == '#')
@@ -62,11 +138,6 @@ static int moves[8][2] = { { -1,0 },{ -1, -1 },{ 0, -1 },{ 1, -1 },{ 1, 0 },{ 1,
 
 inline bool switchAdjacentPieces(char board[][BOARD_SIZE])
 {
-	int xFirstPlayerIndex;
-	int yFirstPlayerIndex;
-	int xSecondPlayerIndex;
-	int ySecondPlayerIndex;
-
 	for(int i = 1; i < 4; i++)
 	{
 		for(int j = 1; j < 4; j++)
@@ -77,25 +148,25 @@ inline bool switchAdjacentPieces(char board[][BOARD_SIZE])
 				{
 					if(getBoardStateAt(board, i + moves[l][0], j + moves[l][1]) == PLAYER)
 					{
-						xFirstPlayerIndex = i;
-						yFirstPlayerIndex = j;
-						xSecondPlayerIndex = i + moves[l][0];
-						ySecondPlayerIndex = j + moves[l][1];
-						break;
-					}
-				}
-				
-				for(int l = 0; l < 8; l++)
-				{
-					if(getBoardStateAt(board, i + moves[l][0], j + moves[l][1]) == AI)
-					{
-						swap(board[i][j], board[i + moves[l][0]][j + moves[l][1]]);
-						return true;
+						for (int l = 0; l < 8; l++)
+						{
+							if (getBoardStateAt(board, i + moves[l][0], j + moves[l][1]) == AI)
+							{
+								swap(board[i][j], board[i + moves[l][0]][j + moves[l][1]]);
+								return true;
+							}
+						}
 					}
 				}
 			}
 		}
 	}
+
+	//To see if player is about to win
+	topLeftCornerCheck(board);
+	topRightCornerCheck(board);
+	bottomLeftCornerCheck(board);
+	bottomRightCornerCheck(board);
 
 	return false;
 }

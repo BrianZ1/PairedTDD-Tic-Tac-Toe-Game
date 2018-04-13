@@ -45,3 +45,4 @@ int getYPos(char board[][BOARD_SIZE])
 	cin >> y;
 	return y;
 }
+

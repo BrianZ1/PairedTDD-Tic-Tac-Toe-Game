@@ -18,15 +18,31 @@ void AIMove(char board[][BOARD_SIZE]) {
 
 	do
 	{
-		int xPos = rand() % 3 + 1;
-		int yPos = rand() % 3 + 1;
+		int coords[3][2] = { { -1,-1 },{ -1,-1 },{ -1,-1 } };
+		getPlayerPatternCoords(board, coords, 3);
 
-		if(getBoardStateAt(board, xPos, yPos) == '#')
+		if(coords[0][0] != -1)
 		{
-			setBoardStateAt(board, xPos, yPos, AI);
-			validPlay = true;
-		}
+			//select cheat at random
+			if(rand() % 2 == 0)
+			{
+				switchAdjacentPieces(board);
+			}
+			else
+			{
+				placeOnBorder(board);
+			}
+		}else
+		{
+			int xPos = rand() % 3 + 1;
+			int yPos = rand() % 3 + 1;
 
+			if (getBoardStateAt(board, xPos, yPos) == '#')
+			{
+				setBoardStateAt(board, xPos, yPos, AI);
+				validPlay = true;
+			}
+		}
 	} while (!validPlay);
 }
 

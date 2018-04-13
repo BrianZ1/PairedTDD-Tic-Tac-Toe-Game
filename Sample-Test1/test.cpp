@@ -101,27 +101,13 @@ TEST(WinstateCheckTest, offGridWinTest)
 }
 
 //Place off grid tests
-TEST(PlaceOffGridTest, almostWinConditionTest)
-{
-	char board[BOARD_SIZE][BOARD_SIZE];
-
-	initBoard(board);
-
-	setBoardStateAt(board, 1, 1, PLAYER);
-	setBoardStateAt(board, 1, 2, PLAYER);
-	setBoardStateAt(board, 2, 1, PLAYER);
-	setBoardStateAt(board, 2, 2, PLAYER);
-
-	EXPECT_TRUE(placeOnBorder(board));
-}
-
 TEST(PlaceOffGridTest, twoDifferentAdjacentPieceTest)
 {
 	char board[BOARD_SIZE][BOARD_SIZE];
 
 	initBoard(board);
 
-	setBoardStateAt(board, 1, 1, PLAYER);
+	setBoardStateAt(board, 1, 1, AI);
 	setBoardStateAt(board, 1, 2, AI);
 	setBoardStateAt(board, 2, 1, AI);
 	setBoardStateAt(board, 2, 2, AI);
@@ -136,18 +122,10 @@ TEST(PlaceOnBorderTest, placeOnBorderTest)
 	initBoard(board);
 
 	setBoardStateAt(board, 1, 1, PLAYER);
-	setBoardStateAt(board, 1, 2, PLAYER);
-	setBoardStateAt(board, 1, 3, AI);
 	setBoardStateAt(board, 2, 1, AI);
-	setBoardStateAt(board, 2, 2, PLAYER);
-	setBoardStateAt(board, 3, 1, PLAYER);
-	setBoardStateAt(board, 3, 2, AI);
-	setBoardStateAt(board, 3, 3, AI);
+	setBoardStateAt(board, 3, 1, AI);
 
 	EXPECT_TRUE(placeOnBorder(board));
-
-	setBoardStateAt(board, 3, 4, AI);
-	EXPECT_EQ(getBoardStateAt(board, 3, 4), AI);
 }
 
 //Player Move Tests

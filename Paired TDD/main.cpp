@@ -12,6 +12,10 @@ int main() {
 	do {
 		
 		AIMove(board);
+		winner = winstateCheck(board, end);
+		if(end)
+			break;
+
 		do
 		{
 			displayBoard(board);

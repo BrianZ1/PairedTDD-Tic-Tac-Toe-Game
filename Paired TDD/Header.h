@@ -114,6 +114,29 @@ inline void bottomRightCornerCheck(char board[][BOARD_SIZE])
 	}
 }
 
+inline void middleCheck(char board[][BOARD_SIZE])
+{
+	if (getBoardStateAt(board, 2, 2) == PLAYER)
+	{
+		if (getBoardStateAt(board, 2, 1) == PLAYER)
+		{
+			setBoardStateAt(board, 2, 3, AI);
+		}
+		else if (getBoardStateAt(board, 1, 2) == PLAYER)
+		{
+			setBoardStateAt(board, 3, 2, AI);
+		}
+		else if (getBoardStateAt(board, 2, 3) == PLAYER)
+		{
+			setBoardStateAt(board, 2, 1, AI);
+		}
+		else if (getBoardStateAt(board, 3, 2) == PLAYER)
+		{
+			setBoardStateAt(board, 1, 2, AI);
+		}
+	}
+}
+
 inline bool playerMove(char board[][BOARD_SIZE], int yIndex, int xIndex)
 {
 	if(getBoardStateAt(board, xIndex, yIndex) == '#')
